@@ -1,4 +1,4 @@
-package feibor
+package feiborate
 
 import (
   "bytes"

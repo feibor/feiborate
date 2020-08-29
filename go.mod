@@ -1,4 +1,4 @@
-module feibor.com/feibor
+module github.com/feibor/feiborate
 
 go 1.14
 

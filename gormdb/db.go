@@ -9,7 +9,7 @@ import (
   "time"
 )
 
-// DBConfigs DB的配置文件
+// DBConfig DB的配置文件
 type DBConfig struct {
   Server    string // 链接地址及端口，如 cdb-8ytuyrra.cd.tencentcdb.com:10023
   UserName  string

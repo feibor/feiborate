@@ -1,1 +1,1 @@
-package feibor
+package feiborate

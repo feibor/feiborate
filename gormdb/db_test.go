@@ -7,9 +7,9 @@ import (
 func TestNewDB(t *testing.T) {
 	dbConfig := &DBConfig{
 		Server:    "192.168.7.7",
-		UserName:  "feibor",
-		Password:  "feibor",
-		DBName:    "feibor",
+		UserName:  "feiborate",
+		Password:  "feiborate",
+		DBName:    "feiborate",
 		DebugMode: true,
 	}
 	db, err := NewDB(dbConfig)

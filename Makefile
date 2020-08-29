@@ -9,10 +9,10 @@ export GO111MODULE=on
 checkLocal: deps vet lint misspell staticcheck cyclo const
 
 deps:
-	go get -u golang.org/x/lint/golint
-	go get -u github.com/fzipp/gocyclo
-	go get -u github.com/client9/misspell/cmd/misspell
-	go get -u honnef.co/go/tools/cmd/staticcheck
+	go get golang.org/x/lint/golint
+	go get github.com/fzipp/gocyclo
+	go get github.com/client9/misspell/cmd/misspell
+	go get honnef.co/go/tools/cmd/staticcheck
 
 vet:
 	@echo "vet"

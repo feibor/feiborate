@@ -1,4 +1,4 @@
-package feibor
+package feiborate
 
 const (
 	// NoRecordCommonErrorCode 通用的查询无记录的错误码

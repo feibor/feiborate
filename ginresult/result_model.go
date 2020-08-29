@@ -1,7 +1,7 @@
 package ginresult
 
 import (
-  "feibor.com/feibor"
+  "github.com/feibor/feiborate"
   "github.com/gin-gonic/gin"
   "github.com/sirupsen/logrus"
 )
@@ -141,7 +141,7 @@ func (p *PageInfoFeed) DefaultPageSize() {
 // Success 默认成功返回
 func (r *Result) Success() {
   r.Msg = "Success!"
-  r.Code = feibor.Success
+  r.Code = feiborate.Success
   r.HTTPStatusCode = HTTPStatusSuccess
 }
 
@@ -149,25 +149,25 @@ func (r *Result) Success() {
 func (r *Result) Fail() {
   // Fail 方法主要提供返回错误的json数据
   r.Msg = "Something get error."
-  r.Code = feibor.Fail
+  r.Code = feiborate.Fail
 }
 
 // FailMessage 方法主要提供返回错误的json数据
 func (r *Result) FailMessage(msg string) {
   r.Msg = msg
-  r.Code = feibor.Fail
+  r.Code = feiborate.Fail
 }
 
 // FailErr 携带error信息,如果是respError，则
 // 必然存在errorCode和msg，因此进行赋值。否则不赋值
 func (r *Result) FailErr(err error) {
   switch vtype := err.(type) {
-  case *feibor.RespError:
+  case *feiborate.RespError:
     r.Msg = vtype.ErrorMsg
     r.Code = vtype.ErrorCode
     r.HTTPStatusCode = vtype.HTTPStatusCode
   default:
-    r.Code = feibor.Fail
+    r.Code = feiborate.Fail
     r.Msg = err.Error()
     r.HTTPStatusCode = HTTPStatusSuccess
     logrus.Error(err)
