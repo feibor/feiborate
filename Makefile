@@ -13,6 +13,7 @@ deps:
 	go get github.com/fzipp/gocyclo
 	go get github.com/client9/misspell/cmd/misspell
 	go get honnef.co/go/tools/cmd/staticcheck
+	go get github.com/jgautheron/goconst/cmd/goconst
 
 vet:
 	@echo "vet"

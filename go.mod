@@ -7,6 +7,7 @@ require (
 	github.com/fzipp/gocyclo v0.0.0-20150627053110-6acd4345c835 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/jgautheron/goconst v0.0.0-20200227150835-cda7ea3bf591 // indirect
 	github.com/jinzhu/gorm v1.9.16
 	github.com/sirupsen/logrus v1.6.0
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
