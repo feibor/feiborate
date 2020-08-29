@@ -11,6 +11,24 @@ const (
 	HTTPStatusSuccess = 200
 )
 
+// NewResult 创建pageResult
+func NewResult(ctx *gin.Context) *Result {
+	return &Result{
+		HTTPStatusCode: HTTPStatusSuccess,
+		ctx:            ctx,
+	}
+}
+
+// NewPage 创建Page对象
+func NewPage(ctx *gin.Context, pageSize int, pageNum int) (p *Page) {
+	p = &Page{
+		PageSize: pageSize,
+		PageNum:  pageNum,
+	}
+	p.PageInit()
+	return
+}
+
 // ResultPage 分页查询结果集的对象
 type ResultPage struct {
 	*Result
@@ -93,23 +111,6 @@ func NewPageResult() *ResultPage {
 	return &ResultPage{
 		Result: &Result{},
 	}
-}
-
-// NewResult 创建pageResult
-func NewResult() *Result {
-	return &Result{
-		HTTPStatusCode: HTTPStatusSuccess,
-	}
-}
-
-// NewPage 创建Page对象
-func NewPage(pageSize int, pageNum int) (p *Page) {
-	p = &Page{
-		PageSize: pageSize,
-		PageNum:  pageNum,
-	}
-	p.PageInit()
-	return
 }
 
 // DefaultPageSize 设置默认分页大小
@@ -221,7 +222,8 @@ func (r *Result) Exec(err error, resObj interface{}) {
 
 // AbortErr 终止ctx的方法
 func (r *Result) AbortErr(err error) {
-	r.ExecWithNoData(err)
+	logrus.Error(err)
+	r.FailErr(err)
 	r.ctx.AbortWithStatusJSON(r.HTTPStatusCode, &r)
 }
 
