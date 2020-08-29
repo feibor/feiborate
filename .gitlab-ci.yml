@@ -1,0 +1,17 @@
+stages:
+  - check
+
+before_script:
+  - pwd
+  - ls -l -a .
+
+# gitlab 的bug，貌似repository之外的目录不能缓存 https://gitlab.com/gitlab-org/gitlab-ce/issues/4431
+# 所以要转移GOPATH
+sso-build:
+  image: harbor.feibor.com/third-mirror/golang:1.12-alpine
+  stage: check
+  script:
+    - echo "========== Start to Makefile ============="
+    - make
+  tags:
+    - maven-workflow
