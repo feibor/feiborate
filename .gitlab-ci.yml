@@ -11,6 +11,7 @@ sso-build:
   image: harbor.feibor.com/third-mirror/golang:1.12-alpine
   stage: check
   script:
+    - apk add gcc g++ make libffi-dev openssl-dev libtool
     - echo "========== Start to Makefile ============="
     - make
   tags:
