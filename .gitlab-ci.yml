@@ -8,10 +8,9 @@ before_script:
 # gitlab 的bug，貌似repository之外的目录不能缓存 https://gitlab.com/gitlab-org/gitlab-ce/issues/4431
 # 所以要转移GOPATH
 sso-build:
-  image: harbor.feibor.com/third-mirror/golang:1.12-alpine
+  image: harbor.feibor.com/library/golang:1.12-alpine-make
   stage: check
   script:
-    - apk add gcc g++ make libffi-dev openssl-dev libtool
     - echo "========== Start to Makefile ============="
     - make
   tags:
