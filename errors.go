@@ -6,20 +6,21 @@ import (
 )
 
 // ErrorCode 错误编码
-type ErrorCode int
+type ErrorCode string
+
+const (
+	// Fail 请求失败
+	Fail = "0"
+	// Success 成功
+	Success     = "1"
+	NoRecordErr = "-1"
+)
 
 // ValueStruct 错误码的结果集
 type ValueStruct struct {
 	Code string
 	Msg  string
 }
-
-const (
-	// Fail 请求失败
-	Fail = "0"
-	// Success 成功
-	Success = "1"
-)
 
 // RespError 返回错误
 type RespError struct {
@@ -43,6 +44,21 @@ func NewRespError(errCode string, errMsg string) *RespError {
 	}
 }
 
+// NewErrRecordNotFound 新增无记录的错误
+func NewErrRecordNotFound(errMsg string) *RespError {
+	return NewRespError(NoRecordErr, errMsg)
+}
+
+// IsRecordNotFundErr 是否是无记录的err
+func IsRecordNotFundErr(err error) bool {
+	if err, ok := err.(*RespError); ok {
+		if err.ErrorCode == NoRecordErr {
+			return true
+		}
+	}
+	return false
+}
+
 // NewCommonRespError 创建一个common error
 func NewCommonRespError(errMsg string) *RespError {
 	return NewRespError(Fail, errMsg)
@@ -51,6 +67,11 @@ func NewCommonRespError(errMsg string) *RespError {
 // NewCommonRespErrorF 创建一个common error
 func NewCommonRespErrorF(errMsg string, args ...interface{}) *RespError {
 	return NewRespError(Fail, fmt.Sprintf(errMsg, args...))
+}
+
+// NewCommonRespCodeErrorF 创建一个common error
+func NewCommonRespCodeErrorF(errMsg string, code string, args ...interface{}) *RespError {
+	return NewRespError(code, fmt.Sprintf(errMsg, args...))
 }
 
 // NewRespErrHTTPStatus 与NewRespErr方法不同的是需要携带httpstatus的值
