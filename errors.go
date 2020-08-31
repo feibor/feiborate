@@ -13,7 +13,7 @@ const (
 	Fail = "0"
 	// Success 成功
 	Success     = "1"
-	NoRecordErr = "-1"
+	NoRecordErr = "000000"
 )
 
 // ValueStruct 错误码的结果集
@@ -45,12 +45,12 @@ func NewRespError(errCode string, errMsg string) *RespError {
 }
 
 // NewErrRecordNotFound 新增无记录的错误
-func NewErrRecordNotFound(errMsg string) *RespError {
-	return NewRespError(NoRecordErr, errMsg)
+func NewErrRecordNotFoundF(errMsg string, args ...interface{}) *RespError {
+	return NewCommonRespCodeErrorF(NoRecordErr, errMsg, args)
 }
 
-// IsRecordNotFundErr 是否是无记录的err
-func IsRecordNotFundErr(err error) bool {
+// IsRecordNotFoundErr 是否是无记录的err
+func IsRecordNotFoundErr(err error) bool {
 	if err, ok := err.(*RespError); ok {
 		if err.ErrorCode == NoRecordErr {
 			return true
@@ -70,7 +70,7 @@ func NewCommonRespErrorF(errMsg string, args ...interface{}) *RespError {
 }
 
 // NewCommonRespCodeErrorF 创建一个common error
-func NewCommonRespCodeErrorF(errMsg string, code string, args ...interface{}) *RespError {
+func NewCommonRespCodeErrorF(code string, errMsg string, args ...interface{}) *RespError {
 	return NewRespError(code, fmt.Sprintf(errMsg, args...))
 }
 
