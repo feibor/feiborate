@@ -13,6 +13,7 @@ const (
 	Fail = "0"
 	// Success 成功
 	Success     = "1"
+	// NoRecordErr 未查询到记录
 	NoRecordErr = "000000"
 )
 
@@ -44,9 +45,9 @@ func NewRespError(errCode string, errMsg string) *RespError {
 	}
 }
 
-// NewErrRecordNotFound 新增无记录的错误
+// NewErrRecordNotFoundF 新增无记录的错误
 func NewErrRecordNotFoundF(errMsg string, args ...interface{}) *RespError {
-	return NewCommonRespCodeErrorF(NoRecordErr, errMsg, args)
+	return NewCommonRespCodeErrorF(NoRecordErr, errMsg, args...)
 }
 
 // IsRecordNotFoundErr 是否是无记录的err

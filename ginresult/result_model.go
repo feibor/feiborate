@@ -50,7 +50,7 @@ func (r *Result) InvokeResult(fc func(result *Result) error) (err error) {
 	return
 }
 
-// InvokeResult 执行result call back，且可以直接使用resp
+// InvokeResultResp 执行result call back，且可以直接使用resp
 func (r *Result) InvokeResultResp(fc func(result *Result) (resp interface{}, err error)) (err error) {
 	if err = r.Validate(); err != nil {
 		r.ExecWithNoData(err)
