@@ -4,7 +4,6 @@ import (
   "bytes"
   "encoding/json"
   "fmt"
-  "hash/crc32"
   "math/rand"
   "strings"
 )
@@ -140,15 +139,15 @@ func StringBuild(arrString ...string) string {
 func StringBuildSep(sep string, arrString ...string) string {
   return strings.Join(arrString, sep)
 }
-
-// HashCode 获取字符串的hashcode值
-func HashCode(s string) int {
-  v := int(crc32.ChecksumIEEE([]byte (s)))
-  if v >= 0 {
-    return v
-  }
-  if -v >= 0 {
-    return -v
-  }
-  return 0
-}
+//
+// // HashCode 获取字符串的hashcode值
+// func HashCode(s string) int {
+//   v := int(crc32.ChecksumIEEE([]byte (s)))
+//   if v >= 0 {
+//     return v
+//   }
+//   if -v >= 0 {
+//     return -v
+//   }
+//   return 0
+// }
